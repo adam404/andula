@@ -1,5 +1,5 @@
 import React from "react";
-import { useData } from "../context/DataContext";
+import { useData, RoleType } from "../context/DataContext";
 import {
   companiesData,
   industries,
@@ -10,7 +10,7 @@ import {
 
 interface Filters {
   timePeriod?: string;
-  role?: string;
+  role?: RoleType;
   source?: string;
 }
 

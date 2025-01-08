@@ -24,6 +24,8 @@ export default function SourceEffectiveness({
   const { currentData } = useData();
   const { sourceEffectiveness } = currentData;
 
+  console.log(filters);
+
   return (
     <div className="w-full">
       <h2 className="text-2xl font-semibold mb-4">Source Effectiveness</h2>

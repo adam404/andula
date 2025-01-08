@@ -3,8 +3,13 @@ import {
   companiesData,
   keyMetricsData,
   timeToHireData,
-  pipelineByRole,
 } from "../data/mockData";
+
+export type RoleType =
+  | "Software Engineer"
+  | "Product Manager"
+  | "Designer"
+  | "All";
 
 interface DataContextType {
   selectedCompany: string;
@@ -32,52 +37,10 @@ export function DataProvider({ children }: { children: ReactNode }) {
         keyMetrics: keyMetricsData,
         pipeline: [],
         sourceEffectiveness: [],
-        timeToHireTrend: [],
+        timeToHireTrend: timeToHireData,
       };
 
     const { metrics } = company;
-
-    // Calculate metrics based on source and role
-    const calculateMetricsByFilters = (source: string, role: string) => {
-      let filteredMetrics = { ...metrics };
-
-      // Apply role filter
-      if (role !== "All") {
-        const roleData = pipelineByRole[role];
-        if (roleData) {
-          const totalHiresForRole = roleData.hired;
-          filteredMetrics = {
-            ...filteredMetrics,
-            totalHires: totalHiresForRole,
-            openReqs: Math.round(
-              (totalHiresForRole / metrics.totalHires) * metrics.openReqs
-            ),
-            pipeline: roleData,
-          };
-        }
-      }
-
-      // Apply source filter
-      if (source !== "All") {
-        const sourceHires = filteredMetrics.sourceEffectiveness[source] || 0;
-        const totalHires = Object.values(
-          filteredMetrics.sourceEffectiveness
-        ).reduce((sum, val) => sum + val, 0);
-
-        filteredMetrics = {
-          ...filteredMetrics,
-          totalHires: sourceHires,
-          openReqs: Math.round(
-            (sourceHires / totalHires) * filteredMetrics.openReqs
-          ),
-          sourceEffectiveness: {
-            [source]: filteredMetrics.sourceEffectiveness[source],
-          },
-        };
-      }
-
-      return filteredMetrics;
-    };
 
     return {
       keyMetrics: {
@@ -96,7 +59,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
           hires,
         })
       ),
-      timeToHireTrend: metrics.timeToHireTrend,
+      timeToHireTrend: metrics.timeToHireTrend || timeToHireData,
     };
   }, [selectedCompany]);
 

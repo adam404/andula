@@ -1,11 +1,11 @@
 import React from "react";
-import { useData } from "../context/DataContext";
+import { useData, RoleType } from "../context/DataContext";
 import { pipelineByRole } from "../data/mockData";
 
 interface KeyMetricsProps {
   filters: {
     timePeriod?: string;
-    role?: string;
+    role: RoleType;
     source?: string;
   };
 }

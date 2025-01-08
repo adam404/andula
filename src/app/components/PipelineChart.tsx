@@ -22,6 +22,8 @@ export default function PipelineChart({ filters }: PipelineChartProps) {
   const { currentData } = useData();
   const { pipeline } = currentData;
 
+  console.log(filters);
+
   return (
     <div className="w-full">
       <h2 className="text-2xl font-semibold mb-4">Pipeline Visualization</h2>

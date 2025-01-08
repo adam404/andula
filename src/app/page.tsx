@@ -6,11 +6,11 @@ import PipelineChart from "@/app/components/PipelineChart";
 import KeyMetrics from "@/app/components/KeyMetrics";
 import TimeToHireChart from "@/app/components/TimeToHireChart";
 import SourceEffectiveness from "@/app/components/SourceEffectiveness";
-import { DataProvider } from "@/app/context/DataContext";
+import { DataProvider, RoleType } from "@/app/context/DataContext";
 
 interface Filters {
   timePeriod: string;
-  role: string;
+  role: RoleType;
   source: string;
 }
 

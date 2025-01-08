@@ -22,6 +22,8 @@ export default function TimeToHireChart({ filters }: TimeToHireChartProps) {
   const { currentData } = useData();
   const { timeToHireTrend } = currentData;
 
+  console.log(filters);
+
   return (
     <div className="w-full">
       <h2 className="text-2xl font-semibold mb-4">Time to Hire Trend</h2>
